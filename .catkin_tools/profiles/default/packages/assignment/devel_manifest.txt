@@ -1,0 +1,4 @@
+assignment
+/home/robot/dd2419_ws/devel/.private/assignment/lib/pkgconfig/assignment.pc /home/robot/dd2419_ws/devel/lib/pkgconfig/assignment.pc
+/home/robot/dd2419_ws/devel/.private/assignment/share/assignment/cmake/assignmentConfig.cmake /home/robot/dd2419_ws/devel/share/assignment/cmake/assignmentConfig.cmake
+/home/robot/dd2419_ws/devel/.private/assignment/share/assignment/cmake/assignmentConfig-version.cmake /home/robot/dd2419_ws/devel/share/assignment/cmake/assignmentConfig-version.cmake

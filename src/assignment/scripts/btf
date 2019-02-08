@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+import rospy
+import tf2_ros
+from geometry_msgs.msg import PoseStamped,TransformStamped, Vector3
+from aruco_msgs.msg import MarkerArray
+from tf.transformations import euler_from_quaternion,quaternion_from_euler
+from crazyflie_driver.msg import Position
+
+tf = None
+def handle_pose(msg):
+    rospy.loginfo('New Detection received:\n%s', msg)
+    t = TransformStamped()
+    
+    for i in msg.markers:
+        id = i.id
+    
+    t.header.stamp = rospy.Time.now()
+    t.child_frame_id = 'camera_link'
+    t.header.frame_id ='cf1/base_link'
+    t.transform.translation = Vector3(0.02,0,0.01)
+    t.transform.rotation.x,t.transform.rotation.y,t.transform.rotation.z,t.transform.rotation.w = quaternion_from_euler(90,0,90)
+    broadcaster = tf2_ros.StaticTransformBroadcaster()
+    broadcaster.sendTransform(t)
+    rospy.spin()
+    
+
+if __name__ == '__main__':
+    
+    rospy.init_node('btf')
+    sub_goal = rospy.Subscriber('/aruco/markers', MarkerArray, handle_pose)
+    rospy.spin() 
+   
+
+
+

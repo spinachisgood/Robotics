@@ -1,0 +1,8 @@
+prefix=/home/robot/dd2419_ws/devel/.private/assignment
+
+Name: assignment
+Description: Description of assignment
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/robot/dd2419_ws/devel/.private/assignment/lib 
+Requires: 

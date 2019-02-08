@@ -1,0 +1,1 @@
+[libprotobuf WARNING google/protobuf/descriptor.cc:5411] Warning: Unused import: "MagneticField.proto" imports "quaternion.proto" which is not used.

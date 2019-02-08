@@ -1,0 +1,8 @@
+prefix=/home/robot/dd2419_ws/install
+
+Name: part2
+Description: Description of part2
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/robot/dd2419_ws/install/lib 
+Requires: 

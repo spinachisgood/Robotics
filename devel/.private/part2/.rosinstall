@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/robot/dd2419_ws/devel/.private/part2/setup.sh

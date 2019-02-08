@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+
+import sys
+import math
+import json
+
+import rospy
+import tf2_ros 
+from tf.transformations import quaternion_from_euler
+from geometry_msgs.msg import TransformStamped, Vector3
+from crazyflie_driver.msg import Position
+
+def move_to_pose(m):
+   
+    cmd = Position()
+    cmd.header.stamp = rospy.Time.now()
+    cmd.header.frame_id = 'cf1/odom'
+    cmd.x , cmd.y,cmd.z = m['pose']['position']
+    cmd.z = 0.4
+
+    roll,pitch,yaw = m['pose']['orientation']
+    cmd.yaw =yaw
+
+    rospy.loginfo('The cmd :%s',cmd)
+    pub_cmd.publish(cmd)
+    rospy.rate = 20
+    
+    
+
+
+
+rospy.init_node('task2')    
+pub_cmd  = rospy.Publisher('/cf1/cmd_position', Position, queue_size=2)
+cmd = Position()
+cmd.x , cmd.y,cmd.z = (0,0,0.4)
+def main(argv=sys.argv):
+
+    # Let ROS filter through the arguments
+    args = rospy.myargv(argv=argv)
+    x1,y1,z1 = (5,0,0) 
+    yaw1 = 90
+    x2,y2,z2 = (0,3,0)
+    yaw2 = 90
+    x3,y3,z3 = (-5,0,0)
+    yaw4 = 90
+    x4,y4 =(0,-3)
+
+    # Load world JSON
+    #with open(args[1], 'rb') as f:
+     #   world = json.load(f)
+    #state =1
+    rospy.Rate(20)
+   
+    start = rospy.Time.now()
+    while not rospy.is_shutdown():
+     
+     #for m in world['markers']:
+     
+      #move_to_pose(m)
+    
+    
+     cmd.header.stamp = rospy.Time.now()
+     cmd.header.frame_id = 'cf1/odom'
+   
+    
+    
+     cmd.yaw =90
+
+     rospy.loginfo('The cmd :%s',cmd)
+     
+     pub_cmd.publish(cmd)
+            
+
+     while(rospy.Time.now()-start > rospy.Duration.from_sec(20)):
+     
+      if((cmd.x == x3) and (cmd.y == y3)):
+       cmd.x,cmd.y = (x4,y4)
+      if((cmd.x == x2) and (cmd.y ==y2)):
+       cmd.x,cmd.y = (x3,y3)
+      if((cmd.x == x1) and (cmd.y ==y1)):
+       cmd.x,cmd.y = (x2,y2)
+      if((cmd.x == 0) and (cmd.y ==0)):
+       cmd.x,cmd.y = (x1,y1)
+      start = rospy.Time.now()
+    
+
+   
+
+if __name__ == "__main__":
+   
+    main()

@@ -1,0 +1,1 @@
+/home/robot/dd2419_ws/devel/.private/part2/lib/pkgconfig/part2.pc
